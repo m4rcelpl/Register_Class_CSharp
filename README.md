@@ -1,4 +1,4 @@
-# Register Class Lite for c#
+# Register Class CSharp
 
 ## How to use it
 * In **Visual Studio Add** "[RegisterClass.cs"](../master/RegisterClass.cs) in **Solution Explorer**.
