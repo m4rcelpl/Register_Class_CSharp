@@ -93,16 +93,32 @@ byte[] ValueByte = Reg.ReadBinary("HKEY_CURRENT_USER", "SOFTWARE\\My Program", "
             MessageBox.Show("Some data: " + Suma);
 ```
 
+### Delete
+How to remove all the values that we created earlier
+```c#
+Reg.DeleteValue("HKEY_CURRENT_USER", "SOFTWARE\\My Program", "Version Name");
+Reg.DeleteValue("HKEY_CURRENT_USER", "SOFTWARE\\My Program", "Version Number32");
+Reg.DeleteValue("HKEY_CURRENT_USER", "SOFTWARE\\My Program", "Version Number64");
+Reg.DeleteValue("HKEY_CURRENT_USER", "SOFTWARE\\My Program", "Location");
+Reg.DeleteValue("HKEY_CURRENT_USER", "SOFTWARE\\My Program", "Setting");
+Reg.DeleteValue("HKEY_CURRENT_USER", "SOFTWARE\\My Program", "Some data");
+```
+And the whole key
+```c#
+Reg.DeleteKey("HKEY_CURRENT_USER", "SOFTWARE\\My Program");
+```
+
+
 ### Error Handling
-If you want to display errors simple turn on **ViewError**:
+If you want to display errors simply turn on `ViewError`:
 ```c#
 Reg.ViewError = true;
 ```
-You can specifi name of error windows by changing **ViewErrorTitle**
+You can specify name for the window with error by changing `ViewErrorTitle`
 ```c#
 Reg.ViewErrorTitle = "Register Operation Error";
 ```
-This might be help in debug. You can change title windows for evry operation.
+This might be helpful in debug. You can change the window name for every operation.
 ```c#
 Reg.ViewErrorTitle = "Write String Operation Error";
 Reg.WriteString("HKEY_CURRENT_USER", "SOFTWARE\\My Program", "Version Name", "Odyn");
@@ -111,13 +127,17 @@ Reg.ViewErrorTitle = "Write DWord Operation Error";
 Reg.WriteDWord("HKEY_CURRENT_USER", "SOFTWARE\\My Program", "Version Number32", 2);
 ```
 
-In the end you can add you own error message by checkinch **GetError** status. **true** = error, **false** = no error (default).
+You can add you own error messages based on `GetError` status. `true` = error, `false` = no error (default).
 ```c#
 Reg.WriteString("HKEY_CURRENT_USER", "SOFTWARE\\My Program", "Version Name", "Odyn");
 if (Reg.GetError)
 {
 //Error appeared do what you want
 }
+```
 
+### Thenks
+Thank to **Francesco Natali**, I'm inspired by his works.
 
+http://www.codeproject.com/Articles/3389/Read-write-and-delete-from-registry-with-C
 
