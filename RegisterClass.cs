@@ -1,6 +1,6 @@
 /*
 2015 Marcel Garbarczyk m4rcelpl@outlook.com
-Home page: https://github.com/m4rcelpl/Register_Class_Lite
+Home page: https://github.com/m4rcelpl/Register_Class_CSharp
 */
 
 using Microsoft.Win32;
