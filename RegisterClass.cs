@@ -71,7 +71,7 @@ namespace m4.RegisterClass
             }
         }
 
-        public void WriteBin(string RootKey, string KeyName, string ValueName, int Value)
+        public void WriteBin(string RootKey, string KeyName, string ValueName, byte[] Value)
         {
 
             try
@@ -89,7 +89,7 @@ namespace m4.RegisterClass
             }
         }
 
-        public void WriteMultiString(string RootKey, string KeyName, string ValueName, string Value)
+        public void WriteMultiString(string RootKey, string KeyName, string ValueName, string[] Value)
         {
 
             try
@@ -107,7 +107,7 @@ namespace m4.RegisterClass
             }
         }
 
-        public void WriteQWord(string RootKey, string KeyName, string ValueName, int Value)
+        public void WriteQWord(string RootKey, string KeyName, string ValueName, long Value)
         {
 
             try
@@ -146,12 +146,72 @@ namespace m4.RegisterClass
 
         }
 
+        public string[] ReadMultiString(string RootKey, string KeyName, string ValueName, string[] DefaultValu)
+        {
+            try
+            {
+                GetError = false;
+                return (string[])Registry.GetValue(RootKey + "\\" + KeyName, ValueName, DefaultValu);
+            }
+
+            catch (Exception e)
+            {
+                if (ViewError)
+                    MessageBox.Show(e.ToString(), ViewErrorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+
+                GetError = true;
+
+                return DefaultValu;
+            }
+
+        }
+
         public int ReadInt(string RootKey, string KeyName, string ValueName, int DefaultValu)
         {
             try
             {
                 GetError = false;
                 return (int)Registry.GetValue(RootKey + "\\" + KeyName, ValueName, DefaultValu);
+            }
+
+            catch (Exception e)
+            {
+                if (ViewError)
+                    MessageBox.Show(e.ToString(), ViewErrorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+
+                GetError = true;
+
+                return DefaultValu;
+            }
+
+        }
+
+        public byte[] ReadBinary(string RootKey, string KeyName, string ValueName, byte[] DefaultValu)
+        {
+            try
+            {
+                GetError = false;
+                return (byte[])Registry.GetValue(RootKey + "\\" + KeyName, ValueName, DefaultValu);
+            }
+
+            catch (Exception e)
+            {
+                if (ViewError)
+                    MessageBox.Show(e.ToString(), ViewErrorTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+
+                GetError = true;
+
+                return DefaultValu;
+            }
+
+        }
+
+        public long ReadInt64(string RootKey, string KeyName, string ValueName, long DefaultValu)
+        {
+            try
+            {
+                GetError = false;
+                return (long)Registry.GetValue(RootKey + "\\" + KeyName, ValueName, DefaultValu);
             }
 
             catch (Exception e)
